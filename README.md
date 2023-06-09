@@ -102,42 +102,97 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-1. Using nand gates and wires construct sr flip flop
-2. Repeat the same steps for JK,D,T flipflops.
-3. Find RTL logic and timing diagram for all flipflops
-4. End the program
+Step-1 : Open Quartus II and select new project and choose the file location.
+
+Step-2 : Module Declaration. Module should have the file name.
+
+Step-3 : Declare Inputs and outputs.
+
+Step-4 : Use assign declaration and wire to define the functionality of logic circuits.
+
+Step-5 : End the program with endmodule.
+
+Step-6 : Run the program and choose RTL viewer to get RTL realization.
 ### PROGRAM 
 ## D-flipflop program
-![Screenshot (60)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/222329e5-f1e3-4666-bd70-5a9978d14b78)
+```
+module dflipflop(d,clk,q,qbar);
+input d,clk;
+output q,qbar;
+reg q,qbar;
+always @(posedge clk)
+begin 
+q<=d;
+qbar<=~q;
+end
+endmodule
+```
 ## JK-filpflop program
-![Screenshot (57)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/6a886c42-e8fd-4a09-80d0-fc3bc734ee76)
+```
+module jkflipflop(j,k,clk,q,qbar);
+input j,k,clk;
+output q,qbar;
+reg q,qbar;
+always @(posedge clk)
+begin 
+q<=(j&~q)|(~k&q);
+qbar<=~q;
+end
+endmodule
+```
 ## SR-filpflop program
-![Screenshot (53)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/e676c046-afc2-492e-956a-c35b7bcc5fbc)
+```
+module srflipflop(s,r,clk,q,qbar);
+input s,r,clk;
+output q,qbar;
+reg q,qbar;
+always @(posedge clk)
+begin 
+q<=s|(~r&q);
+qbar<=r|(~s&~q);
+end
+endmodule
+```
 ## T-filpflop program
-![Screenshot (63)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/8ff016eb-3a6c-40cc-a6a5-da005bd6c60e)
+```
+module tflipflop(t,clk,q,qbar);
+input t,clk;
+output q,qbar;
+reg q,qbar;
+always @(posedge clk)
+begin 
+q<=(t&~q)|(~t&q);
+qbar<=~q;
+end
+endmodule
+```
 
 ### RTL LOGIC FOR FLIPFLOPS
 ## D-filpflop RTL
-![Screenshot (61)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/8b63e4cf-13ff-4f9a-8cb5-34e082805c5e)
+![240657730-7d57801a-fb82-4ae1-87c6-f86c8c9045de](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/c7a90c88-518e-452a-b706-caf533ff7a4a)
+
 ## JK-filpflop RTL
-![Screenshot (58)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/940e6a17-bcd8-4e53-95b4-d2b871f425c5)
+![240546057-9d70104e-eff1-48e2-ad94-7a0343db1f1e](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/c72fcc64-64c4-4ad0-a5f4-673fe224bf5d)
+
 ## SR-filpflop RTL
-![Screenshot (54)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/ec8f1d7a-32ae-4d16-82c2-dc6aa5fb9a7a)
+![240549341-dde6417e-4a44-44a9-a56c-99ac0e85a64c](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/aca216ca-0b1f-4d1f-aa5a-a1df1e4569d4)
+
 ## T-filpflop RTL
-![Screenshot (64)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/28667b42-166e-4d71-bf46-29df76286290)
+![240555551-3e2addc4-d769-4d8a-bb22-0fd84bc81cf7](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/c8a1aaf0-f41b-4d08-8af4-ab4c15a8c1ff)
+
 
 ### TIMING DIGRAMS FOR FLIP FLOPS 
 ## D-filpflop Timing Graph
-![Screenshot (62)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/848eaf01-ace1-4437-8ce3-6cf6e85dded0)
+![240658622-5c342724-dfea-4cb1-8552-ef92f0d6941a](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/68ba2ec4-4d79-43f8-a32f-e3d4ca05235c)
 
 ## JK-filpflop Timing Graph
-![Screenshot (59)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/21b28813-f069-4c3f-8ed5-01501e7483bb)
+![240547798-46d642fc-7d4b-4cac-8432-3150dac8dcaa](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/0c88e0f8-c9f0-47de-9e62-01e75a6f0bcb)
 
 ## SR-filpflop Timing Graph
-![Screenshot (56)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/76b168c1-5b4f-4af7-a004-d2ae935be6af)
+![240550347-35c90e16-43c5-4914-91c6-f18cd9930111](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/3d92b04d-4339-4caf-a1c9-248023bea174)
 
 ## T-filpflop Timing Graph
-![Screenshot (65)](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/735c79d0-b1d1-443a-803b-076573459bb7)
+![240556624-cbd70e07-f80f-4ac2-8310-cac2841e9678](https://github.com/Pravinrajj/Experiment--05-Implementation-of-flipflops-using-verilog/assets/117917674/529e110f-c77c-430e-8585-b2ab4533fd6f)
 
 ### RESULTS 
 Thus To implement all the flipflops using verilog and validating their functionality using their functional tables is verified using quartus software.
